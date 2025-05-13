@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#include <functional>
 
 namespace Olon {
 
@@ -20,11 +21,9 @@ class HADevice {
 
 // ----------------------
 
-typedef std::function<void(const String& topic, const String& payload)>
-    PublisherCallback;
-
 class HADiscovery {
  private:
+  using PublisherCallback = std::function<void(const String& topic, const String& payload)>;
   String _discoveryPrefix = "homeassistant";
   String _component = "";
   String _nodeId = "";
